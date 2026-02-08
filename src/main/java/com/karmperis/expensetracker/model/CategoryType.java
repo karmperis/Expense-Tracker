@@ -1,0 +1,26 @@
+package com.karmperis.expensetracker.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+/**
+ * Represents a category type table in the database.
+ */
+@Entity
+@Table(name = "categories_types")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class CategoryType extends AbstractEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String type;
+
+    @Builder.Default
+    private Boolean active = true;
+}
