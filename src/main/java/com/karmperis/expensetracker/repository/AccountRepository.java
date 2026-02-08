@@ -16,7 +16,7 @@ public interface AccountRepository extends JpaRepository<Account, UUID> {
      * @param user The User entity to filter accounts by.
      * @return A list of accounts belonging to the specified user.
      */
-    List<Account> findByUser(User user);
+    List<Account> findByUserOrderByAccountAsc(User user);
 
     /**
      * Checks if an account with the given name already exists for a specific user.
