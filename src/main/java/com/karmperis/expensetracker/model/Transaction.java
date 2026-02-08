@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * Represents a financial transaction (income or expense) in the database.
+ * Entity: Represents a financial transaction (income or expense) in the database.
  */
 @Entity
 @Table(name = "transactions")
