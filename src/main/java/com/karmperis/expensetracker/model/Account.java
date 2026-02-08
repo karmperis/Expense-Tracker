@@ -5,7 +5,7 @@ import lombok.*;
 import java.math.BigDecimal;
 
 /**
- * Represents an account table in the database.
+ * Entity: Represents an account table in the database.
  */
 
 @Entity
