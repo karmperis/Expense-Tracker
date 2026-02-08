@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 /**
- * Represents a category type table in the database.
+ * Entity: Represents a category type table in the database.
  */
 @Entity
 @Table(name = "categories_types")
