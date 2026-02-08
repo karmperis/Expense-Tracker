@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * This class provides auditing functionality by automatically updating
  * the created_at and updated_at timestamps when an entity
- * is created or updated.
+ * is created or updated. Also provides UUID for security reasons.
  */
 @MappedSuperclass
 @Getter
