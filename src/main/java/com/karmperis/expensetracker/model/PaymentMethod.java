@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 /**
- * Represents a payment method table in the database.
+ * Entity: Represents a payment method table in the database.
  */
 
 @Entity
