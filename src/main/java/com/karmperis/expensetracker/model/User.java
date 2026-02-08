@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 /**
- * Represents a user table in the database.
+ * Entity: Represents a user table in the database.
  */
 @Entity
 @Table(name = "users")
