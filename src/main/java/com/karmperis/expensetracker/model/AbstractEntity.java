@@ -10,8 +10,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.Instant;
+import java.util.UUID;
 
 /**
  * This class provides auditing functionality by automatically updating
@@ -32,4 +32,7 @@ public abstract class AbstractEntity {
     @LastModifiedDate
     @Column(name ="updated_at", nullable = false, columnDefinition = "DATETIME")
     private Instant updated_at;
+
+    @Column(unique = true, nullable = false, updatable = false)
+    private UUID uuid = UUID.randomUUID();
 }
