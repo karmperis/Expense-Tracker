@@ -41,7 +41,7 @@ public abstract class AbstractEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AbstractEntity that)) return false;
-        return Objects.equals(uuid, that.uuid);
+        return Objects.equals(this.getUuid(), that.getUuid());
     }
 
     @Override
