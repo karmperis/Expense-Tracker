@@ -3,6 +3,7 @@ package com.karmperis.expensetracker.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,13 @@ public abstract class AbstractEntity {
 
     @Column(unique = true, nullable = false, updatable = false)
     private UUID uuid = UUID.randomUUID();
+
+    @PrePersist
+    protected void prePersist() {
+        if (uuid == null) {
+            uuid = UUID.randomUUID();
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
