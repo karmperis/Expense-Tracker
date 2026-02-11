@@ -24,9 +24,15 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
      * Retrieves all accounts associated with a specific user.
      * @param user The User entity to filter accounts by.
      * @return A list of active accounts belonging to the specified user.
-     *
      */
     List<Account> findByUserAndActiveTrueOrderByAccountAsc(User user);
+
+    /**
+     * Retrieves all accounts associated with a specific user.
+     * @param user The User entity to filter accounts by.
+     * @return A list of inactive accounts belonging to the specified user.
+     */
+    List<Account> findByUserAndActiveFalseOrderByAccountAsc(User user);
 
     /**
      * Checks if an account with the given name already exists for a specific user.
