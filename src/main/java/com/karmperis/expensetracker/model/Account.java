@@ -16,9 +16,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 public class Account extends AbstractEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(nullable = false)
     private String account;
