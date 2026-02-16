@@ -8,35 +8,33 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Interface for managing Account entities.
+ * Interface for managing account entities.
  */
-
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
     /**
-     * Retrieves an Account based on UUID.
+     * Retrieves an account based on UUID and user.
      * @param uuid The UUID of the account to search for.
-     * @return The found Account, or empty if no account matches the UUID.
+     * @return The found account, or empty if no account matches the UUID.
      */
-    Optional<Account> findByUuid(UUID uuid);
-
+    Optional<Account> findByUuidAndUser(UUID uuid, User user);
     /**
      * Retrieves all accounts associated with a specific user.
-     * @param user The User entity to filter accounts by.
+     * @param user The user entity to filter accounts by.
      * @return A list of active accounts belonging to the specified user.
      */
     List<Account> findByUserAndActiveTrueOrderByAccountAsc(User user);
 
     /**
      * Retrieves all accounts associated with a specific user.
-     * @param user The User entity to filter accounts by.
+     * @param user The user entity to filter accounts by.
      * @return A list of inactive accounts belonging to the specified user.
      */
     List<Account> findByUserAndActiveFalseOrderByAccountAsc(User user);
 
     /**
      * Checks if an account with the given name already exists for a specific user.
-     * @param user The User entity to check.
+     * @param user The user entity to check.
      * @param account The name of the account to check.
      * @return True if a matching account exists, false otherwise.
      */
