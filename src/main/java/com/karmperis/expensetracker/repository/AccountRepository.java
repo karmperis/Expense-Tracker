@@ -15,18 +15,19 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     /**
      * Retrieves an account based on UUID and user.
      * @param uuid The UUID of the account to search for.
+     * @param user The user entity to filter account by.
      * @return The found account, or empty if no account matches the UUID.
      */
     Optional<Account> findByUuidAndUser(UUID uuid, User user);
     /**
-     * Retrieves all accounts associated with a specific user.
+     * Retrieves all active accounts associated with a specific user.
      * @param user The user entity to filter accounts by.
      * @return A list of active accounts belonging to the specified user.
      */
     List<Account> findByUserAndActiveTrueOrderByAccountAsc(User user);
 
     /**
-     * Retrieves all accounts associated with a specific user.
+     * Retrieves all inactive accounts associated with a specific user.
      * @param user The user entity to filter accounts by.
      * @return A list of inactive accounts belonging to the specified user.
      */
