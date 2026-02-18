@@ -17,6 +17,10 @@ public class CategoryType extends AbstractEntity {
     @Column(nullable = false, unique = true)
     private String type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @Builder.Default
     private Boolean active = true;
 }

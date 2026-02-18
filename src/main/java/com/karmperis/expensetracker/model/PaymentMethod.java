@@ -18,6 +18,10 @@ public class PaymentMethod extends AbstractEntity {
     @Column(nullable = false)
     private String paymentMethod;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     @Builder.Default
     private Boolean active = true;
 }
