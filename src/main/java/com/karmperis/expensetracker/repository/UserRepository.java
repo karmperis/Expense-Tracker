@@ -5,6 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Interface for managing user entities.
+ */
 public interface UserRepository extends JpaRepository <User, Long> {
     /**
      * Retrieves a user based on their UUID.
