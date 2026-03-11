@@ -2,6 +2,8 @@ package com.karmperis.expensetracker.repository;
 
 import com.karmperis.expensetracker.model.CategoryType;
 import com.karmperis.expensetracker.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -23,16 +25,16 @@ import java.util.UUID;
         /**
          * Retrieves all active category types associated with a specific user.
          * @param user The user entity to filter category types by.
-         * @return A list of active category types belonging to the specified user.
+         * @return A page of active category types belonging to the specified user.
          */
-        List<CategoryType> findByUserAndActiveTrueOrderByTypeAsc(User user);
+        Page<CategoryType> findByUserAndActiveTrueOrderByTypeAsc(User user, Pageable pageable);
 
         /**
          * Retrieves all inactive category types associated with a specific user.
          * @param user The user entity to filter category types by.
-         * @return A list of inactive category types belonging to the specified user.
+         * @return A page of inactive category types belonging to the specified user.
          */
-        List<CategoryType> findByUserAndActiveFalseOrderByTypeAsc(User user);
+        Page<CategoryType> findByUserAndActiveFalseOrderByTypeAsc(User user, Pageable pageable);
 
         /**
          * Checks if a category type with the given name already exists for a specific user.
