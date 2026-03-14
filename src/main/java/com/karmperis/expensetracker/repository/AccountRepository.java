@@ -2,6 +2,8 @@ package com.karmperis.expensetracker.repository;
 
 import com.karmperis.expensetracker.model.Account;
 import com.karmperis.expensetracker.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
@@ -22,16 +24,16 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     /**
      * Retrieves all active accounts associated with a specific user.
      * @param user The user entity to filter accounts by.
-     * @return A list of active accounts belonging to the specified user.
+     * @return A page of active accounts belonging to the specified user.
      */
-    List<Account> findByUserAndActiveTrueOrderByAccountAsc(User user);
+    Page<Account> findByUserAndActiveTrueOrderByAccountAsc(User user, Pageable pageable);
 
     /**
      * Retrieves all inactive accounts associated with a specific user.
      * @param user The user entity to filter accounts by.
-     * @return A list of inactive accounts belonging to the specified user.
+     * @return A page of inactive accounts belonging to the specified user.
      */
-    List<Account> findByUserAndActiveFalseOrderByAccountAsc(User user);
+    Page<Account> findByUserAndActiveFalseOrderByAccountAsc(User user, Pageable pageable);
 
     /**
      * Checks if an account with the given name already exists for a specific user.
