@@ -2,8 +2,9 @@ package com.karmperis.expensetracker.repository;
 
 import com.karmperis.expensetracker.model.PaymentMethod;
 import com.karmperis.expensetracker.model.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,16 +23,16 @@ public interface PaymentMethodRepository extends JpaRepository<PaymentMethod, Lo
     /**
      * Retrieves all active payment methods associated with a specific user.
      * @param user The user entity to filter payment methods by.
-     * @return A list of active payment methods belonging to the specified user.
+     * @return A page of active payment methods belonging to the specified user.
      */
-    List<PaymentMethod> findByUserAndActiveTrueOrderByPaymentMethodAsc(User user);
+    Page<PaymentMethod> findByUserAndActiveTrueOrderByPaymentMethodAsc(User user, Pageable pageable);
 
     /**
      * Retrieves all inactive payment methods associated with a specific user.
      * @param user The User entity to filter payment methods by.
-     * @return A list of inactive payment methods belonging to the specified user.
+     * @return A page of inactive payment methods belonging to the specified user.
      */
-    List<PaymentMethod> findByUserAndActiveFalseOrderByPaymentMethodAsc(User user);
+    Page<PaymentMethod> findByUserAndActiveFalseOrderByPaymentMethodAsc(User user, Pageable pageable);
 
     /**
      * Checks if a payment method with the given name already exists for a specific user.
