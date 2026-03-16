@@ -34,18 +34,6 @@ public class CategoryServiceImpl implements ICategoryService {
     private final CategoryTypeRepository categoryTypeRepository;
 
     /**
-     * Checks if a category with a specific name exists for a given user.
-     * @param category The name of the category to check.
-     * @param user The user owner.
-     * @return True if it exists, false otherwise.
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public boolean isCategoryExists(String category, User user) {
-        return categoryRepository.existsByUserAndCategory(user, category);
-    }
-
-    /**
      * Creates and saves a new category for a specific user.
      * @param dto  The data for the new category.
      * @param user The user who will own the category.
@@ -64,6 +52,11 @@ public class CategoryServiceImpl implements ICategoryService {
             }
 
             Category category = mapper.mapToEntity(dto);
+
+            CategoryType categoryType = categoryTypeRepository.findById(dto.categoryTypeId())
+                    .orElseThrow(() -> new EntityInvalidArgumentException("CategoryType", "Invalid ID"));
+            category.setCategoryType(categoryType);
+
             category.setUser(user);
             category.setActive(true);
 
@@ -178,5 +171,17 @@ public class CategoryServiceImpl implements ICategoryService {
         Page<Category> categoriesPage = categoryRepository.findByUserAndActiveTrueOrderByCategoryAsc(user, pageable);
         log.debug("Get paginated categories returned successfully for user={}", user.getUsername());
         return categoriesPage.map(mapper::mapToReadOnlyDTO);
+    }
+
+    /**
+     * Checks if a category with a specific name exists for a given user.
+     * @param category The name of the category to check.
+     * @param user The user owner.
+     * @return True if it exists, false otherwise.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public boolean isCategoryExists(String category, User user) {
+        return categoryRepository.existsByUserAndCategory(user, category);
     }
 }
