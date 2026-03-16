@@ -59,6 +59,14 @@ public interface IUserService {
     Page<UserReadOnlyDTO> getAllUsers(Pageable pageable);
 
     /**
+     * Retrieves a user by their username.
+     * @param username The username to search for.
+     * @return The user details.
+     * @throws EntityNotFoundException If the user is not found.
+     */
+    UserReadOnlyDTO getUserByUsername(String username) throws EntityNotFoundException;
+
+    /**
      * Checks if a username is already taken.
      * @param username The name of the user.
      * @return True if it exists.
