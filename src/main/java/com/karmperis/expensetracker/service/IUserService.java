@@ -4,6 +4,7 @@ import com.karmperis.expensetracker.core.exceptions.EntityAlreadyExistsException
 import com.karmperis.expensetracker.core.exceptions.EntityInvalidArgumentException;
 import com.karmperis.expensetracker.core.exceptions.EntityNotFoundException;
 import com.karmperis.expensetracker.dto.*;
+import com.karmperis.expensetracker.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -72,4 +73,13 @@ public interface IUserService {
      * @return True if it exists.
      */
     boolean isUserNameExists(String username);
+
+    /**
+     * Retrieves the user entity by username.
+     * This is used internally to associate other entities with a specific user.
+     * @param username The username to search for.
+     * @return The user entity.
+     * @throws EntityNotFoundException If the user does not exist.
+     */
+    User getRawUserByUsername(String username) throws EntityNotFoundException;
 }
