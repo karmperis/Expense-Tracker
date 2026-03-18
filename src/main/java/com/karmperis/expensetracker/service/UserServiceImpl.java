@@ -164,4 +164,19 @@ public class UserServiceImpl implements IUserService {
     public boolean isUserNameExists(String username) {
         return userRepository.existsByUsername(username);
     }
+
+
+    /**
+     * Retrieves the user entity by username.
+     * This is used internally to associate other entities with a specific user.
+     * @param username The username to search for.
+     * @return The user entity associated with the given username.
+     * @throws EntityNotFoundException If no user is found with the specified username.
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public User getRawUserByUsername(String username) throws EntityNotFoundException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new EntityNotFoundException("User", "User with username '" + username + "' was not found."));
+    }
 }
